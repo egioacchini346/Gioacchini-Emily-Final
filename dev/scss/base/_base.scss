@@ -1,11 +1,16 @@
 /* =============
     Base
 ============= */
-
-ul{
+figure {
     margin: 0;
     padding: 0;
-    li{
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    li {
         list-style: none;
     }
 }
@@ -20,9 +25,4 @@ ul{
     @include xl {
         margin-bottom: 64px;
     }
-}
-
-
-.hidden{
-    display: none;
 }

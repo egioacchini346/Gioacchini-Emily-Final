@@ -352,6 +352,11 @@ template {
 /* =============
     Base
 ============= */
+figure {
+  margin: 0;
+  padding: 0;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -374,20 +379,25 @@ ul li {
   }
 }
 
-.hidden {
-  display: none;
-}
-
 /* =============
     Typography
 ============= */
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
-  padding: 0;
+h1, h2, h3, h4 {
   margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.section-title {
+  font-weight: 300;
 }
 
 /* =============
@@ -440,25 +450,33 @@ a {
     Header
 ============= */
 header {
-  display: grid;
-  grid-template-columns: 16px auto 16px;
-  grid-template-areas: ". header .";
   background-color: #2A3036;
+  display: grid;
 }
-header > div {
-  grid-area: header;
+@media (min-width: 1200px) {
+  header {
+    grid-template-areas: ". header .";
+    grid-template-columns: auto 1200px auto;
+  }
+}
+@media (min-width: 1200px) {
+  header > div {
+    grid-area: header;
+  }
+}
+header > div section {
   padding: 15px;
 }
-header > div img {
+header > div section img {
   width: 96px;
 }
 @media (min-width: 768px) {
-  header > div img {
+  header > div section img {
     width: 123px;
   }
 }
 @media (min-width: 1024px) {
-  header > div img {
+  header > div section img {
     width: 150px;
   }
 }
@@ -469,31 +487,34 @@ header > div img {
 footer {
   background-color: #2A3036;
   color: #C8C7BC;
-  display: grid;
-  grid-template-columns: 16px auto 16px;
-  grid-template-areas: ". footer .";
+  padding: 16px;
 }
 @media (min-width: 1200px) {
   footer {
+    display: grid;
+    grid-template-areas: ". footer .";
     grid-template-columns: auto 1200px auto;
   }
 }
 footer > div {
-  grid-area: footer;
+  display: grid;
+  gap: 24px;
 }
 @media (min-width: 768px) {
   footer > div {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     grid-template-areas: "locations newsletter" "locations social";
-    gap: 16px;
+    grid-template-columns: 50% auto;
   }
 }
 @media (min-width: 1024px) {
   footer > div {
-    grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "locations newsletter social";
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  footer > div {
+    grid-area: footer;
   }
 }
 footer > div h1 {
@@ -533,11 +554,6 @@ footer > div #locations i {
 footer > div #locations a:link,
 footer > div #locations a:visited {
   color: #C8C7BC;
-}
-footer > div #locations a:link:hover, footer > div #locations a:link:active,
-footer > div #locations a:visited:hover,
-footer > div #locations a:visited:active {
-  color: #FFD205;
 }
 @media (min-width: 768px) {
   footer > div #locations #nova {
@@ -624,26 +640,26 @@ footer > div #social ul li a:visited:active {
     Search
 ============= */
 #search {
-  display: grid;
-  grid-template-columns: 16px auto 16px;
-  grid-template-areas: ". search .";
   background-color: #F8F9FA;
+  display: grid;
+}
+@media (min-width: 1200px) {
+  #search {
+    grid-template-areas: ". search .";
+    grid-template-columns: auto 1200px auto;
+  }
 }
 #search > div {
-  grid-area: search;
   padding: 16px;
 }
 @media (min-width: 1200px) {
   #search > div {
-    display: grid;
-    grid-template-columns: auto 1200px auto;
-    grid-template-areas: ". search-content .";
+    grid-area: search;
+    margin: 0 15px;
   }
 }
-@media (min-width: 1200px) {
-  #search > div form {
-    grid-area: search-content;
-  }
+#search > div form {
+  display: flex;
 }
 #search > div form input {
   background-color: transparent;
@@ -694,131 +710,140 @@ footer > div #social ul li a:visited:active {
 /* =============
     Hero
 ============= */
-#hero img {
+#hero > div img {
   display: block;
   object-fit: cover;
   width: 100%;
 }
+#hero > div ul {
+  background-color: #E2BA06;
+}
 @media (min-width: 768px) {
-  #hero section ul {
-    grid-area: hero-content;
+  #hero > div ul {
     display: grid;
     grid-template-columns: 40% auto;
   }
 }
 @media (min-width: 1024px) {
-  #hero section ul {
+  #hero > div ul {
     grid-template-columns: 50% auto;
   }
 }
-#hero section ul li a:link,
-#hero section ul li a:visited {
+#hero > div ul li a:link,
+#hero > div ul li a:visited {
   color: #000;
-  transition: 0.25s;
+  display: flex;
   padding: 16px;
   transition: 0.25s;
-  display: flex;
 }
 @media (min-width: 768px) {
-  #hero section ul li a:link,
-#hero section ul li a:visited {
-    padding: 24px 16px;
-  }
-}
-@media (min-width: 768px) {
-  #hero section ul li a:link,
-#hero section ul li a:visited {
+  #hero > div ul li a:link,
+#hero > div ul li a:visited {
     padding: 16px;
   }
 }
-#hero section ul li a:link:hover, #hero section ul li a:link:active,
-#hero section ul li a:visited:hover,
-#hero section ul li a:visited:active {
+#hero > div ul li a:link:hover, #hero > div ul li a:link:active,
+#hero > div ul li a:visited:hover,
+#hero > div ul li a:visited:active {
   background-color: #000;
   color: #fff;
 }
-#hero section ul li a:link .hero-right,
-#hero section ul li a:visited .hero-right {
+#hero > div ul li a:link .hero-left,
+#hero > div ul li a:visited .hero-left {
   align-items: center;
   display: flex;
-  margin-left: auto;
-  font-size: 1.125rem;
 }
-#hero section ul li a:link .hero-right h5,
-#hero section ul li a:visited .hero-right h5 {
-  margin-right: 10px;
+#hero > div ul li a:link .hero-right,
+#hero > div ul li a:visited .hero-right {
+  align-items: center;
+  display: flex;
+  font-size: 1.125rem;
+  margin-left: auto;
+}
+#hero > div ul li a:link .hero-right h5,
+#hero > div ul li a:visited .hero-right h5 {
   display: none;
+  margin-right: 10px;
 }
 @media (min-width: 1024px) {
-  #hero section ul li a:link .hero-right h5,
-#hero section ul li a:visited .hero-right h5 {
+  #hero > div ul li a:link .hero-right h5,
+#hero > div ul li a:visited .hero-right h5 {
     display: block;
   }
 }
-#hero section ul #product {
-  background-color: #E2BA06;
-}
 @media (min-width: 1200px) {
-  #hero section ul #product {
+  #hero > div ul #hero-item {
     display: grid;
-    grid-template-columns: auto 600px;
-    grid-template-areas: ". product";
+    grid-template-columns: auto 700px;
   }
 }
-@media (min-width: 1200px) {
-  #hero section ul #product a {
-    grid-area: product;
+#hero > div ul #hero-item h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  #hero > div ul #hero-item h2 {
+    margin-bottom: 8px;
   }
 }
-#hero section ul #location {
+@media (min-width: 1024px) {
+  #hero > div ul #hero-item h2 {
+    font-size: 1.5625rem;
+  }
+}
+#hero > div ul #hero-item p {
+  font-size: 1rem;
+  font-weight: 600;
+}
+#hero > div ul #hero-location {
   background-color: #FFD205;
 }
 @media (min-width: 1200px) {
-  #hero section ul #location {
+  #hero > div ul #hero-location {
     display: grid;
-    grid-template-columns: 600px auto;
-    grid-template-areas: "location .";
+    grid-template-columns: 700px auto;
   }
 }
-@media (min-width: 1200px) {
-  #hero section ul #location a {
-    grid-area: location;
+#hero > div ul #hero-location p {
+  font-weight: 400;
+}
+#hero > div ul #hero-location p span {
+  font-weight: 600;
+}
+@media (min-width: 768px) {
+  #hero > div ul #hero-location #location-top {
+    margin-bottom: 8px;
   }
 }
 
-/* =============
-    Planning
-============= */
-#planning {
-  display: grid;
-  grid-template-columns: 16px auto 16px;
-  grid-template-areas: ". planning .";
-}
 @media (min-width: 1200px) {
   #planning {
-    grid-template-columns: auto 1000px auto;
+    display: grid;
+    grid-template-areas: ". planning .";
+    grid-template-columns: auto 1200px auto;
   }
 }
 #planning > div {
   padding: 0 16px;
-  grid-area: planning;
+}
+@media (min-width: 1200px) {
+  #planning > div {
+    grid-area: planning;
+  }
+}
+#planning > div ul {
+  display: grid;
+  gap: 16px;
 }
 @media (min-width: 768px) {
   #planning > div ul {
-    display: grid;
     grid-template-columns: 50% auto;
-    gap: 16px;
   }
 }
 #planning > div ul li {
   background-color: #E0DFD5;
-  padding: 16px;
   display: flex;
-}
-@media (min-width: 768px) {
-  #planning > div ul li {
-    padding: 24px 16px;
-  }
+  padding: 16px;
 }
 @media (min-width: 768px) {
   #planning > div ul li {
@@ -826,9 +851,9 @@ footer > div #social ul li a:visited:active {
   }
 }
 #planning > div ul li section {
-  padding-right: 20%;
   align-items: center;
   display: flex;
+  padding-right: 20%;
 }
 @media (min-width: 768px) {
   #planning > div ul li section {
@@ -837,10 +862,8 @@ footer > div #social ul li a:visited:active {
 }
 #planning > div ul li section div h1 {
   font-size: 1.375rem;
-  font-weight: 100;
-  font-variation-settings: "wght" 600;
+  font-weight: 400;
   margin-bottom: 8px;
-  color: red;
 }
 @media (min-width: 768px) {
   #planning > div ul li section div h1 {
@@ -877,86 +900,85 @@ footer > div #social ul li a:visited:active {
 @media (min-width: 1350px) {
   #hero-2 {
     display: grid;
-    grid-template-columns: auto 1350px auto;
     grid-template-areas: ". hero-2 .";
+    grid-template-columns: auto 1350px auto;
+  }
+}
+@media (min-width: 1200px) {
+  #hero-2 > div {
+    grid-area: hero-2;
   }
 }
 @media (min-width: 768px) {
-  #hero-2 ul {
+  #hero-2 > div ul {
     display: grid;
     grid-template-columns: 50% auto;
   }
 }
+@media (min-width: 1024px) {
+  #hero-2 > div ul {
+    grid-template-columns: 60% auto;
+    padding: 0 16px;
+  }
+}
 @media (min-width: 1200px) {
-  #hero-2 ul {
+  #hero-2 > div ul {
+    grid-template-areas: "h1 h2" "h1 h3";
     grid-template-columns: 70% auto;
-    grid-template-areas: "h2-1 h2-2" "h2-1 h2-3";
     grid-template-rows: repeat(2, 300px);
+    padding: 0;
   }
 }
-@media (min-width: 1350px) {
-  #hero-2 ul {
-    grid-area: hero-2;
-  }
-}
-#hero-2 ul li {
+#hero-2 > div ul li {
   background-position: center;
   background-size: cover;
   height: 320px;
 }
 @media (min-width: 768px) {
-  #hero-2 ul li {
+  #hero-2 > div ul li {
     height: 500px;
   }
 }
 @media (min-width: 1024px) {
-  #hero-2 ul li {
+  #hero-2 > div ul li {
     height: auto;
   }
 }
-#hero-2 ul #h2-1 {
+#hero-2 > div ul #hero-2-1 {
   background-image: url("../img/hero-2/hero-2-1.jpg");
 }
 @media (min-width: 1200px) {
-  #hero-2 ul #h2-1 {
-    grid-area: h2-1;
+  #hero-2 > div ul #hero-2-1 {
+    grid-area: h1;
   }
 }
-#hero-2 ul #h2-2 {
+#hero-2 > div ul #hero-2-2 {
   background-image: url("../img/hero-2/hero-2-2.jpg");
 }
 @media (min-width: 1200px) {
-  #hero-2 ul #h2-2 {
-    grid-area: h2-2;
+  #hero-2 > div ul #hero-2-2 {
+    grid-area: h2;
   }
 }
-#hero-2 ul #h2-3 {
+#hero-2 > div ul #hero-2-3 {
   background-image: url("../img/hero-2/hero-2-3.jpg");
   display: none;
 }
 @media (min-width: 1200px) {
-  #hero-2 ul #h2-3 {
+  #hero-2 > div ul #hero-2-3 {
     display: block;
-    grid-area: h2-3;
+    grid-area: h3;
   }
 }
 
-/* =============
-    New
-============= */
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   #new {
     display: grid;
-    grid-template-columns: 16px auto 16px;
     grid-template-areas: ". new .";
+    grid-template-columns: auto 1200px auto;
   }
 }
-@media (min-width: 1024px) {
-  #new {
-    grid-template-columns: auto 1024px auto;
-  }
-}
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   #new > div {
     grid-area: new;
   }
@@ -974,18 +996,21 @@ footer > div #social ul li a:visited:active {
     font-weight: 300;
   }
 }
+#new > div ul {
+  display: grid;
+  gap: 16px;
+}
 @media (min-width: 768px) {
   #new > div ul {
-    display: grid;
+    grid-template-areas: "p1 p1 p2 p2" "p3 p3 p4 p4" ". p5 p5 .";
     grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "n1 n1 n2 n2" "n3 n3 n4 n4" ". n5 n5 .";
-    gap: 16px;
+    padding: 0 16px;
   }
 }
 @media (min-width: 1024px) {
   #new > div ul {
+    grid-template-areas: "p1 p1 p2 p2 p3 p3" ". p4 p4 p5 p5 .";
     grid-template-columns: repeat(6, 1fr);
-    grid-template-areas: "n1 n1 n2 n2 n3 n3" ". n4 n4 n5 n5 .";
   }
 }
 #new > div ul li {
@@ -997,70 +1022,54 @@ footer > div #social ul li a:visited:active {
   background-size: cover;
   height: 165px;
 }
-@media (min-width: 768px) {
-  #new > div ul li > div {
-    height: 180px;
-  }
-}
-@media (min-width: 1024px) {
-  #new > div ul li > div {
-    height: 160px;
-  }
-}
 #new > div ul li section {
-  display: grid;
-  grid-template-columns: 16px auto 16px;
-  grid-template-areas: ". new-content .";
-}
-#new > div ul li section > div {
   padding: 16px;
-  grid-area: new-content;
 }
-#new > div ul li section > div h1 {
+#new > div ul li section h1 {
   font-size: 1.6875rem;
   font-weight: 600;
   margin-bottom: 16px;
 }
-#new > div ul li section > div p {
+#new > div ul li section p {
   margin-bottom: 16px;
 }
 @media (min-width: 768px) {
-  #new > div ul #n1 {
-    grid-area: n1;
+  #new > div ul #new-gallery-1 {
+    grid-area: p1;
   }
 }
-#new > div ul #n1 > div {
+#new > div ul #new-gallery-1 > div {
   background-image: url("../img/new/gallery-1.jpg");
 }
 @media (min-width: 768px) {
-  #new > div ul #n2 {
-    grid-area: n2;
+  #new > div ul #new-gallery-2 {
+    grid-area: p2;
   }
 }
-#new > div ul #n2 > div {
+#new > div ul #new-gallery-2 > div {
   background-image: url("../img/new/gallery-2.jpg");
 }
 @media (min-width: 768px) {
-  #new > div ul #n3 {
-    grid-area: n3;
+  #new > div ul #new-gallery-3 {
+    grid-area: p3;
   }
 }
-#new > div ul #n3 > div {
+#new > div ul #new-gallery-3 > div {
   background-image: url("../img/new/gallery-3.jpg");
 }
 @media (min-width: 768px) {
-  #new > div ul #n4 {
-    grid-area: n4;
+  #new > div ul #new-gallery-4 {
+    grid-area: p4;
   }
 }
-#new > div ul #n4 > div {
+#new > div ul #new-gallery-4 > div {
   background-image: url("../img/new/gallery-4.jpg");
 }
 @media (min-width: 768px) {
-  #new > div ul #n5 {
-    grid-area: n5;
+  #new > div ul #new-gallery-5 {
+    grid-area: p5;
   }
 }
-#new > div ul #n5 > div {
+#new > div ul #new-gallery-5 > div {
   background-image: url("../img/new/gallery-5.jpg");
 }
